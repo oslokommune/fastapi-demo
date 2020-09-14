@@ -12,10 +12,10 @@ setup(
     version="0.1.0",
     author="Origo Dataplattform",
     author_email="dataplattform@oslo.kommune.no",
-    description="Serverless Flask app demo",
+    description="Serverless FastAPI demo",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.oslo.kommune.no/origo-dataplatform/flask-demo",
+    url="https://github.oslo.kommune.no/origo-dataplatform/fastapi-demo",
     py_modules=["app"],
-    install_requires=["flask==1.1.2", "flask-restful==0.3.8"],
+    install_requires=["fastapi==0.61.1", "mangum==0.9.2"],
 )

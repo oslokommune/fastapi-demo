@@ -1,19 +1,14 @@
-# https://serverless.com/blog/flask-python-rest-api-serverless-lambda-dynamodb/
-# https://flask-restful.readthedocs.io/en/latest/quickstart.html
+# https://mangum.io/adapter/
 
-from flask import Flask
-from flask_restful import Resource, Api
+from fastapi import FastAPI
+from mangum import Mangum
 
-app = Flask(__name__)
-api = Api(app)
+app = FastAPI()
 
 
-class HelloWorld(Resource):
-    def get(self):
-        return {"hello": "world"}
+@app.get("/")
+def read_root():
+    return {"hello": "world"}
 
 
-api.add_resource(HelloWorld, "/")
-
-if __name__ == "__main__":
-    app.run(debug=True)
+handler = Mangum(app)

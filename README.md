@@ -1,7 +1,7 @@
-Serverless Flask app demo
-=========================
+Serverless FastAPI app demo
+===========================
 
-Based on example at <https://serverless.com/blog/flask-python-rest-api-serverless-lambda-dynamodb/>
+Based on example at <https://mangum.io/adapter/>
 
 
 ## Tests
@@ -15,7 +15,7 @@ For tests and linting we use [pytest](https://pypi.org/project/pytest/),
 
 ## Run
 
-`make run` to start up Flask app locally.
+`make run` to start up FastAPI app locally.
 
 
 ## Deploy
