@@ -33,8 +33,9 @@ test: $(BUILD_VENV)/bin/tox
 	$(BUILD_PY) -m tox -p auto -o
 
 .PHONY: run
-run: $(BUILD_VENV)/bin/flask $(BUILD_VENV)/lib/python$(PY_VERSION)/site-packages/flask_restful
-	FLASK_APP=app.py $(BUILD_PY) -m flask run
+run: $(BUILD_VENV)/bin/uvicorn
+	$(BUILD_PY) -m pip install -r requirements.txt
+	$(BUILD_VENV)/bin/uvicorn app:app --reload
 
 .PHONY: upgrade-deps
 upgrade-deps: $(BUILD_VENV)/bin/pip-compile
@@ -96,12 +97,5 @@ jenkins-bump-patch: $(BUILD_VENV)/bin/bump2version is-git-clean
 $(BUILD_VENV)/bin/pip-compile: $(BUILD_VENV)
 	$(BUILD_PY) -m pip install -U pip-tools
 
-$(BUILD_VENV)/bin/tox: $(BUILD_VENV)
-	$(BUILD_PY) -m pip install -I virtualenv==16.7.9
-	$(BUILD_PY) -m pip install -U tox
-
 $(BUILD_VENV)/bin/%: $(BUILD_VENV)
-	$(BUILD_PY) -m pip install -U $*
-
-$(BUILD_VENV)/lib/python$(PY_VERSION)/site-packages/%: $(BUILD_VENV)
 	$(BUILD_PY) -m pip install -U $*
