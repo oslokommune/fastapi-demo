@@ -21,5 +21,6 @@ setup(
         "fastapi==0.70.0",
         "uvicorn==0.15.0",
         "mangum==0.12.3",
+        "okdata-aws==0.4.1",
     ],
 )
