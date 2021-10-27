@@ -18,8 +18,8 @@ setup(
     url="https://github.oslo.kommune.no/origo-dataplatform/fastapi-demo",
     py_modules=["app"],
     install_requires=[
-        "fastapi==0.61.1",
-        "uvicorn==0.11.8",
-        "mangum==0.9.2",
+        "fastapi==0.70.0",
+        "uvicorn==0.15.0",
+        "mangum==0.12.3",
     ],
 )
