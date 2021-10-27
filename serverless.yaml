@@ -2,7 +2,7 @@ frameworkVersion: ">=2.64.1 <3.0.0"
 service: fastapi-demo
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.8
   memorySize: 128
   region: ${opt:region, 'eu-west-1'}
   stage: ${opt:stage, 'dev'}
@@ -21,6 +21,7 @@ provider:
     GIT_REV: ${git:branch}:${git:sha1}
     STAGE: ${self:provider.stage}
     VERSION: ${self:custom.version}
+    SERVICE_NAME: ${self:service}
 package:
   exclude:
     - '**/*'
@@ -37,8 +38,7 @@ functions:
 plugins:
   - serverless-python-requirements
   - serverless-plugin-git-variables
-  - serverless-pseudo-parameters
-#  - serverless-es-logs
+  - serverless-es-logs
 
 resources:
   Description: |
@@ -51,6 +51,7 @@ custom:
     dockerizePip: non-linux
     slim: true
     usePoetry: false
+    dockerRunCmdExtraArgs: ['-v', '${env:PWD}/../okdata-aws:/okdata-aws']
   esLogs:
     endpoint: ${ssm:/dataplatform/shared/logs-elasticsearch-endpoint}
     index: dataplatform-services
